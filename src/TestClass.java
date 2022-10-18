@@ -6,5 +6,7 @@ public class TestClass {
 		int testInt = 5;
 		
 		System.out.println(testInt);
+		
+		System.out.println("yay");
 	}
 }
