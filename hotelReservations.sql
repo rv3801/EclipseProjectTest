@@ -77,7 +77,36 @@ INSERT INTO Reservation(reservation_id, check_in, check_out, hotel_id, room_id, 
 INSERT INTO Reservation(reservation_id, check_in, check_out, hotel_id, room_id, guest_id, rewards_points) VALUES (6, 1667718000, 1668153600, 1, 5, 1, 100);
 /* 11/6/22- 11/11/22 */
 
-select * from reservation;
+select room_id from room 
+	where hotel_id = '1' 
+		and room_type = 'king' 
+		and room_id NOT IN
+			(select room_id from reservation 
+				where hotel_id = '1' 
+				and room_id in
+                (select room_id from reservation
+					where
+                    # Conflicting scenario 1
+                    (check_out > 1667808000
+                    and
+                    check_out < 1668067200
+                    )
+                    or
+                    (check_in > 1667808000
+                    and
+                    check_in < 1668067200
+                    )
+                    or
+                    (check_in <1667808000
+                    and
+                    check_out > 1668067200
+                    )
+				)
+			)
+;
+
+# Requested check in: 1667808000 (11.7.22)
+# Requested check out: 1668067200 (11.10.22)
 
 /*INNER JOIN Room on Room.hotel_id = Hotel.hotel_id
 INNER JOIN Reservation on Reservation.room_id = Room.room_id
