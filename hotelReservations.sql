@@ -69,12 +69,12 @@ INSERT INTO Reservation(reservation_id, check_in, check_out, hotel_id, room_id, 
 INSERT INTO Reservation(reservation_id, check_in, check_out, hotel_id, room_id, guest_id, rewards_points) VALUES (3, 1668067200, 1668326400, 1, 3, 1, 100);
 /* 11/10/22 - 11/13/22 */
 # Room 4
-INSERT INTO Reservation(reservation_id, check_in, check_out, hotel_id, room_id, guest_id, rewards_points) VALUES (4, 1667718000, 1667808000, 1, 3, 1, 100);
+INSERT INTO Reservation(reservation_id, check_in, check_out, hotel_id, room_id, guest_id, rewards_points) VALUES (4, 1667718000, 1667808000, 1, 4, 1, 100);
 /* 11/6/22- 11/7/22 */
-INSERT INTO Reservation(reservation_id, check_in, check_out, hotel_id, room_id, guest_id, rewards_points) VALUES (5, 1667980800, 1668240000, 1, 3, 1, 100);
+INSERT INTO Reservation(reservation_id, check_in, check_out, hotel_id, room_id, guest_id, rewards_points) VALUES (5, 1667980800, 1668240000, 1, 4, 1, 100);
 /* 11/9/22- 11/12/22 */
 # Room 5
-INSERT INTO Reservation(reservation_id, check_in, check_out, hotel_id, room_id, guest_id, rewards_points) VALUES (6, 1667718000, 1668153600, 1, 3, 1, 100);
+INSERT INTO Reservation(reservation_id, check_in, check_out, hotel_id, room_id, guest_id, rewards_points) VALUES (6, 1667718000, 1668153600, 1, 5, 1, 100);
 /* 11/6/22- 11/11/22 */
 
 select * from reservation;
