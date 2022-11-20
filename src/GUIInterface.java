@@ -18,6 +18,8 @@ public class GUIInterface{
 	private static JTextField password;
 	private static JLabel userLabel;
 	private static JLabel passwordLabel;
+	private static Frame2 frame2;
+
 		
 	
 	GUIInterface(){
@@ -60,8 +62,26 @@ public class GUIInterface{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				
+				boolean login_success = false;
+				String guest_username = userName.getText();
+				String guest_password = password.getText();
+				
+				if (guest_username == "" || guest_password == "") {
+					loginInvalidLabel.setVisible(true);
+					return;
+					
+				}
+
+				login_success = myDatabase.checkLogin(guest_username, guest_password);
+				
+				if (!(login_success)) {
+					loginMismatchLabel.setVisible(true);
+					return;
+				}
+				
 				frame1.setVisible(false);
-				Frame2 frame2 = new Frame2();
+				frame2 = new Frame2();
 				frame2.setVisible();
 			}
 			
