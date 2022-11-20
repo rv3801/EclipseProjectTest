@@ -9,8 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-	
-
 public class GUIInterface{
 	private static JFrame frame1;
 	private static JButton loginSubmit;
@@ -35,7 +33,7 @@ public class GUIInterface{
 	}
 		
 
-		public static void createFrames() {
+	public static void createFrames() {
 //			loginPanel = new JPanel();
 //			loginPanel.setBounds(250, 100, 300, 50);
 			
@@ -69,6 +67,7 @@ public class GUIInterface{
 				boolean login_success = false;
 				String guest_username = userNameT.getText();
 				String guest_password = passwordT.getText();
+
 				
 				if (guest_username == "" || guest_password == "") {
 					loginInvalidLabel.setVisible(true);
