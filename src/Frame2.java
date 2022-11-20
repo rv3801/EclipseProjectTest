@@ -16,6 +16,7 @@ public class Frame2 {
 	Frame2(){
 		createFrames();
 		createButtons();
+		activateButtons();
 	}
 	
 	
@@ -23,7 +24,7 @@ public class Frame2 {
 		frame2 = new JFrame("MENU");
 		frame2.setSize(800,400);
 		frame2.getContentPane();
-		frame2.setVisible(false);
+		frame2.setVisible(true);
 		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame2.setLayout(null);
 		frame2.setResizable(false);
@@ -62,7 +63,9 @@ public class Frame2 {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				frame2.setVisible(false);
+				ViewResFrame viewResFrame = new ViewResFrame();
+				viewResFrame.setVisible();
 			}
 			
 		});

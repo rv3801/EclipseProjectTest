@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 	
-public class GUIInterface implements ActionListener{
+public class GUIInterface{
 	private static JFrame frame1;
 	private static JButton loginSubmit;
 	private static JPanel loginPanel;
@@ -55,8 +55,7 @@ public class GUIInterface implements ActionListener{
 	}
 	
 	public static void activateButtons() {
-		loginSubmit.addActionListener(new ActionListener () 
-			{
+		loginSubmit.addActionListener(new ActionListener (){
 	
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -113,12 +112,6 @@ public class GUIInterface implements ActionListener{
 		frame1.add(passwordLabel);
 	}
 	
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 }
 
 
