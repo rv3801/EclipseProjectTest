@@ -18,7 +18,7 @@ public class GUIInterface{
 	private static JLabel passwordLabel;
 	private static JLabel loginInvalidLabel;
 	private static JLabel loginMismatchLabel;
-	//private static Frame2 frame2;
+	private static Frame2 frame2;
 	private static String userName;
 		
 	
@@ -75,7 +75,7 @@ public class GUIInterface{
 					
 				}
 
-				login_success = myDatabase.checkLogin(guest_username, guest_password);
+				//login_success = myDatabase.checkLogin(guest_username, guest_password);
 				
 				if (!(login_success)) {
 					loginMismatchLabel.setVisible(true);
@@ -84,8 +84,8 @@ public class GUIInterface{
 				
 				userName = guest_username; 
 				frame1.setVisible(false);
-				//frame2 = new Frame2();
-				//frame2.setVisible();
+				frame2 = new Frame2();
+				frame2.setVisible();
 			}
 			
 		});
