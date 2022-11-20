@@ -33,4 +33,28 @@ public class DatabaseController {
 			System.out.println(e);
 		}
 	}
+	public boolean userLogin(String user, String password) {
+		try {
+			Statement statement = this.connection.createStatement();
+			String queryString = "select guest_id, guest_password, guest_fname from Guest "
+					+ "where guest_id = " + user;
+			
+			
+			ResultSet resultSet = statement.executeQuery(queryString);
+			
+			if(resultSet.isBeforeFirst()) {
+				resultSet.next();
+				if(resultSet.getString(1) == user && resultSet.getString(2) == password) {
+					System.out.println(resultSet.getString(1) + " " + resultSet.getString(2) + " " + resultSet.getString(3));
+					return true;
+				}
+			}
+			System.out.println("No such username");
+			return false;
+		}
+		catch (Exception e) {
+			System.out.println(e);
+			return false;
+		}
+	}
 }

@@ -19,7 +19,7 @@ CREATE TABLE Room(
 CREATE TABLE Guest(
 	guest_fname varchar(100) not null,
 	guest_lname varchar(100) not null,
-    guest_id int not null,
+    guest_id varchar(100) not null,
     guest_password varchar(100) not null,
     guest_email varchar(100) not null,
     constraint pk_guest primary key (guest_id));
@@ -30,7 +30,7 @@ CREATE TABLE Reservation(
 	check_out int(11) not null,
     hotel_id int not null,
     room_id int not null,
-    guest_id int not null,
+    guest_id varchar(100) not null,
     rewards_points int not null,
 	constraint fk_reservation_room foreign key (room_id) references Room(room_id),
 	constraint fk_reservation_hotel foreign key (hotel_id) references Hotel(hotel_id),
@@ -51,9 +51,9 @@ INSERT INTO Room(room_id, room_type, hotel_id) VALUES (5, "King", 1);
 INSERT INTO Room(room_id, room_type, hotel_id) VALUES (1, "Queen", 2);
 INSERT INTO Room(room_id, room_type, hotel_id) VALUES (2, "King", 2);
 
-INSERT INTO Guest(guest_id, guest_fname, guest_lname, guest_password, guest_email) VALUES (1, "Sally", "Doe", "password", "email");
-INSERT INTO Guest(guest_id, guest_fname, guest_lname, guest_password, guest_email) VALUES (2, "Joe", "Doe", "password", "email");
-INSERT INTO Guest(guest_id, guest_fname, guest_lname, guest_password, guest_email) VALUES (3, "Hannah", "Doe", "password", "email");
+INSERT INTO Guest(guest_id, guest_fname, guest_lname, guest_password, guest_email) VALUES ("1", "Sally", "Doe", "password", "email");
+INSERT INTO Guest(guest_id, guest_fname, guest_lname, guest_password, guest_email) VALUES ("2", "Joe", "Doe", "password", "email");
+INSERT INTO Guest(guest_id, guest_fname, guest_lname, guest_password, guest_email) VALUES ("3", "Hannah", "Doe", "password", "email");
 
 # sally staying in Hotel 1, Room 1 (King)
 # joe staying in Hotel 1, Room 1 (King)
