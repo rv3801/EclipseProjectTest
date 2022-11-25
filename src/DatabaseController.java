@@ -4,9 +4,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class DatabaseController {
-	private String url = "jdbc:mysql://localhost:3306/HotelReservations";
-	private String username = "root";
-	private String password = "password123";
+	private String url = "jdbc:mysql://192.168.1.241:3306/HotelReservations";
+	private String username = "newuser";
+	private String password = "password";
 	private Connection connection;
 	
 	public DatabaseController(){
@@ -37,7 +37,7 @@ public class DatabaseController {
 		try {
 			Statement statement = this.connection.createStatement();
 			String queryString = "select guest_id, guest_password, guest_fname from Guest "
-					+ "where guest_id = " + user;
+					+ "where guest_id = \"" + user + "\"";
 			
 			
 			ResultSet resultSet = statement.executeQuery(queryString);
