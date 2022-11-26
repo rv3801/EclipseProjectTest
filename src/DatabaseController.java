@@ -2,6 +2,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.HashMap;
 
 public class DatabaseController {
 	private String url = "jdbc:mysql://192.168.1.241:3306/HotelReservations";
@@ -22,7 +23,6 @@ public class DatabaseController {
 	public void getGuests() {
 		try {
 			Statement statement = this.connection.createStatement();
-			
 			ResultSet resultset = statement.executeQuery("select * from guest");
 			
 			while(resultset.next()) {
@@ -38,14 +38,14 @@ public class DatabaseController {
 			Statement statement = this.connection.createStatement();
 			String queryString = "select guest_id, guest_password, guest_fname from Guest "
 					+ "where guest_id = \"" + user + "\"";
-			
-			
 			ResultSet resultSet = statement.executeQuery(queryString);
 			
 			if(resultSet.isBeforeFirst()) {
 				resultSet.next();
-				if(resultSet.getString(1) == user && resultSet.getString(2) == password) {
-					System.out.println(resultSet.getString(1) + " " + resultSet.getString(2) + " " + resultSet.getString(3));
+				System.out.println("Check 1");
+				
+				if(user.equals(resultSet.getString(1)) && password.equals(resultSet.getString(2))) {
+					System.out.println("Check 2");
 					return true;
 				}
 			}
@@ -55,6 +55,32 @@ public class DatabaseController {
 		catch (Exception e) {
 			System.out.println(e);
 			return false;
+		}
+	}
+	public HashMap<Integer, String> getHotels(){
+		try {
+			ResultSet resultSet = runQuery("select hotel_id, hotel_name, hotel_location from Hotel");
+			HashMap<Integer, String> returnMap = new HashMap<Integer, String>();
+			
+			while(resultSet.next()) {
+				returnMap.put(resultSet.getInt(1), resultSet.getString(2) + " (" + resultSet.getString(3) + ")");
+			}
+			return returnMap;
+		}
+		catch (Exception e){
+			System.out.println(e);
+			return null;
+		}
+	}
+	private ResultSet runQuery(String query) {
+		try {
+			Statement statement = this.connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(query);
+			return resultSet;
+		}
+		catch (Exception e){
+			System.out.println(e);
+			return null;
 		}
 	}
 }
