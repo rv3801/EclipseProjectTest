@@ -4,6 +4,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import cloneEclipseProjectTest.MakeResFrame;
+
 public class Frame2 {
 
 	private static JFrame frame2;
@@ -75,6 +77,9 @@ public class Frame2 {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				frame2.setVisible(false);
+				MakeResFrame makeResFrame = new MakeResFrame();
+				makeResFrame.setVisible();
 				
 			}
 			
