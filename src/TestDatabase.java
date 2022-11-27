@@ -5,7 +5,7 @@ public class TestDatabase {
 	public static void main(String[] args) {
 		DatabaseController myDatabase = new DatabaseController();
 		
-		myDatabase.getGuests();
+//		myDatabase.getGuests();
 		
 //		System.out.println(myDatabase.userLogin("daveIsCool", "password123"));
 		
@@ -14,9 +14,12 @@ public class TestDatabase {
 //		HashMap<Integer, String> hotels = myDatabase.getHotels();
 //		printMap(hotels);
 		
-		System.out.println("Check 1");
-		HashMap<Integer, String> rooms = myDatabase.getRooms(1);
-		printMap(rooms);
+//		HashMap<Integer, String> rooms = myDatabase.getRooms(1);
+//		printMap(rooms);
+		
+		int checkIn = 1667808000;
+		int checkOut = 1668067200;
+		System.out.println(myDatabase.checkAvail(1, "king", checkIn, checkOut));
 	}
 	private static void printMap(HashMap<Integer, String> inputMap) {
 		for(Integer key : inputMap.keySet()) {

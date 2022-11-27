@@ -101,4 +101,41 @@ public class DatabaseController {
 			return null;
 		}
 	}
+	public boolean makeReservation(int hotel_id, int room_id, int check_in, int check_out, int guest_id) {
+		try {
+			//TODO
+			return false;
+		}
+		catch (Exception e) {
+			System.out.println(e);
+			return false;
+		}
+	}
+	public int checkAvail(int hotel_id, String room_type, int check_in, int check_out) {
+		try {
+			ResultSet resultSet = runQuery("select room_id from Room "
+					+ "where hotel_id = " + hotel_id + " "
+					+ "and room__type = \"" + room_type + "\" "
+					+ "and room_id NOT IN "
+						+ "(select room_id from reservation "
+						+ "where hotel_id = " + hotel_id + " "
+						+ "and "
+							+ "(check_out > " + check_in + " and check out < " + check_out + ") "
+						+ "or "
+							+ "(check_in > " + check_in + " and check_in < " + check_out + ") "
+						+ "or "
+							+ "(check_in < " + check_in + " and check_out > " + check_out + ") "
+						+ ")");
+			if(resultSet.isBeforeFirst()) {
+				return resultSet.getInt(1);
+			}
+			else {
+				return -1;
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+			return -1;
+		}
+	}
 }
