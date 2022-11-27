@@ -111,6 +111,7 @@ public class DatabaseController {
 			return false;
 		}
 	}
+	// TODO Fix mySQL syntax error
 	public int checkAvail(int hotel_id, String room_type, int check_in, int check_out) {
 		try {
 			ResultSet resultSet = runQuery("select room_id from Room "
