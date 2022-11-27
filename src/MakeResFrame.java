@@ -24,11 +24,13 @@ public class MakeResFrame {
 	private static JTextField checkOutDate;
 	private static JButton submitDate;
 	private static JButton submitRoom;
+	private static JButton returnMenu;
 	private static JRadioButton king;
 	private static JRadioButton queen;
 
 	MakeResFrame(){
 		createFrames();
+		createMenuButton();
 		setRoomTypes();
 		activateRoomType();
 		checkInOutLabels();
@@ -123,16 +125,10 @@ public class MakeResFrame {
 		makeRes.add(queen);
 		makeRes.add(pickRoom);
 		makeRes.add(submitRoom);
-		
-		//if(visible == true) {
-			king.setVisible(true);
-			queen.setVisible(true);
-			pickRoom.setVisible(true);
-//		}else {
-//			king.setVisible(false);
-//			queen.setVisible(false);
-//			pickRoom.setVisible(false);
-//		}
+	
+		king.setVisible(true);
+		queen.setVisible(true);
+		pickRoom.setVisible(true);
 		
 	}
 	
@@ -174,6 +170,28 @@ public class MakeResFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				// enter checkInTime and checkOutTime into database?
+			}
+			
+		});
+		
+	}
+	
+	public static void createMenuButton() {
+		returnMenu = new JButton("Return to Menu");
+		returnMenu.setSize(150, 20);
+		returnMenu.setLocation(600, 10);
+		
+		makeRes.add(returnMenu);
+		pickDate.add(returnMenu);
+	}
+	
+	public static void returnToMenu() {
+		returnMenu.addActionListener(new ActionListener () {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
 			}
 			
 		});

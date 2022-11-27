@@ -90,6 +90,9 @@ public class Frame2 {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				frame2.setVisible(false);
+				ViewPersonalInfo viewPersonalInfo = new ViewPersonalInfo();
+				viewPersonalInfo.setVisible();
 				
 			}
 			
