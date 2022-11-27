@@ -5,7 +5,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 
 public class DatabaseController {
-	private String url = "jdbc:mysql://192.168.1.241:3306/HotelReservations";
+	private String url = "jdbc:mysql://134.69.195.86:3306/HotelReservations";
 	private String username = "newuser";
 	private String password = "password";
 	private Connection connection;
@@ -79,6 +79,24 @@ public class DatabaseController {
 			return resultSet;
 		}
 		catch (Exception e){
+			System.out.println(e);
+			return null;
+		}
+	}
+	public HashMap<Integer, String> getRooms(Integer hotel_id) {
+		try {
+			System.out.println("Check 2");
+			ResultSet resultSet = runQuery("select room_id, room_type from Room "
+					+ "where hotel_id = " + hotel_id);
+			HashMap<Integer, String> returnMap = new HashMap<Integer, String>();
+			
+			while(resultSet.next()) {
+				returnMap.put(resultSet.getInt(1), resultSet.getString(2));
+			}
+			System.out.println("Check 3");
+			return returnMap;
+		}
+		catch (Exception e) {
 			System.out.println(e);
 			return null;
 		}
