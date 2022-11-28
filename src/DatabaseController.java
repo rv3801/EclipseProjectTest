@@ -116,23 +116,28 @@ public class DatabaseController {
 		try {
 			ResultSet resultSet = runQuery("select room_id from Room "
 					+ "where hotel_id = " + hotel_id + " "
-					+ "and room__type = \"" + room_type + "\" "
+					+ "and room_type = \"" + room_type + "\" "
 					+ "and room_id NOT IN "
 						+ "(select room_id from reservation "
 						+ "where hotel_id = " + hotel_id + " "
 						+ "and "
-							+ "(check_out > " + check_in + " and check out < " + check_out + ") "
+							+ "(check_out > " + check_in + " and check_out < " + check_out + ") "
 						+ "or "
 							+ "(check_in > " + check_in + " and check_in < " + check_out + ") "
 						+ "or "
 							+ "(check_in < " + check_in + " and check_out > " + check_out + ") "
 						+ ")");
 			if(resultSet.isBeforeFirst()) {
+				resultSet.next();
 				return resultSet.getInt(1);
 			}
 			else {
 				return -1;
 			}
+//			while(resultSet.next()) {
+//				System.out.println(resultSet.getInt(1));
+//			}
+//			return -1;
 		}
 		catch (Exception e) {
 			System.out.println(e);
