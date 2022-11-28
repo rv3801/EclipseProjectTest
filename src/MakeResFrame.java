@@ -24,6 +24,8 @@ public class MakeResFrame {
 	private static JTextField checkOutDate;
 	private static JButton submitDate;
 	private static JButton submitRoom;
+	private static JButton returnMenu;
+	private static JButton returnMenu2;
 	private static JRadioButton king;
 	private static JRadioButton queen;
 
@@ -51,6 +53,19 @@ public class MakeResFrame {
 		pickDate.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pickDate.setLayout(null);
 		pickDate.setResizable(false);
+		
+		returnMenu = new JButton("Return to Menu");
+		returnMenu.setSize(150, 20);
+		returnMenu.setLocation(620, 10);
+		
+		returnMenu2 = new JButton("Return to Menu");
+		returnMenu2.setSize(150, 20);
+		returnMenu2.setLocation(620, 10);
+		
+		
+		makeRes.add(returnMenu);
+		pickDate.add(returnMenu2);
+		
 	}
 	
 	public void setVisible() {
@@ -82,6 +97,7 @@ public class MakeResFrame {
 		pickDate.add(checkIn);
 		pickDate.add(checkOut);
 		pickDate.add(exampleDate);
+
 		
 	}
 	
@@ -123,16 +139,11 @@ public class MakeResFrame {
 		makeRes.add(queen);
 		makeRes.add(pickRoom);
 		makeRes.add(submitRoom);
-		
-		//if(visible == true) {
-			king.setVisible(true);
-			queen.setVisible(true);
-			pickRoom.setVisible(true);
-//		}else {
-//			king.setVisible(false);
-//			queen.setVisible(false);
-//			pickRoom.setVisible(false);
-//		}
+
+	
+		king.setVisible(true);
+		queen.setVisible(true);
+		pickRoom.setVisible(true);
 		
 	}
 	
@@ -174,6 +185,31 @@ public class MakeResFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				// enter checkInTime and checkOutTime into database?
+				// exit to menu????
+			}
+			
+		});
+		
+	}
+	
+
+	public static void returnToMenu() {
+		returnMenu.addActionListener(new ActionListener () {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		returnMenu2.addActionListener(new ActionListener () {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
 			}
 			
 		});

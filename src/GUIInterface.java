@@ -34,19 +34,18 @@ public class GUIInterface{
 		
 
 	public static void createFrames() {
-//			loginPanel = new JPanel();
-//			loginPanel.setBounds(250, 100, 300, 50);
+
 			
-			frame1 = new JFrame("Welcome to your Hotel Account!");
-			frame1.setSize(800,400);
-			frame1.getContentPane();
-			frame1.setVisible(true);
-			frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame1.setLayout(null);
-			frame1.setResizable(false);
+		frame1 = new JFrame("Welcome to your Hotel Account!");
+		frame1.setSize(800,400);
+		frame1.getContentPane();
+		frame1.setVisible(true);
+		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame1.setLayout(null);
+		frame1.setResizable(false);
 			
 			
-		}
+	}
 		
 
 	public static void createButtons() {
@@ -64,25 +63,25 @@ public class GUIInterface{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				boolean login_success = false;
-				String guest_username = userNameT.getText();
-				String guest_password = passwordT.getText();
-
+//				boolean login_success = false;
+//				String guest_username = userNameT.getText();
+//				String guest_password = passwordT.getText();
+//
+//				
+//				if (guest_username == "" || guest_password == "") {
+//					loginInvalidLabel.setVisible(true);
+//					return;
+//					
+//				}
+//
+//				//login_success = myDatabase.checkLogin(guest_username, guest_password);
+//				
+//				if (!(login_success)) {
+//					loginMismatchLabel.setVisible(true);
+//					return;
+//				}
 				
-				if (guest_username == "" || guest_password == "") {
-					loginInvalidLabel.setVisible(true);
-					return;
-					
-				}
-
-				//login_success = myDatabase.checkLogin(guest_username, guest_password);
-				
-				if (!(login_success)) {
-					loginMismatchLabel.setVisible(true);
-					return;
-				}
-				
-				userName = guest_username; 
+				//userName = guest_username; 
 				frame1.setVisible(false);
 				frame2 = new Frame2();
 				frame2.setVisible();
