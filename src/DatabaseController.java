@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -102,9 +103,19 @@ public class DatabaseController {
 			return null;
 		}
 	}
-	public boolean makeReservation(int hotel_id, int room_id, int check_in, int check_out, int guest_id) {
+	public boolean makeReservation(int hotel_id, String room_type, int check_in, int check_out, String guest_id) {
 		try {
-			//TODO
+			int reserveRoom = checkAvail(hotel_id, room_type, check_in, check_out);
+			if(reserveRoom != -1) {
+				ResultSet resultSet = runQuery("select max(reservation_id) from Reservation");
+				resultSet.next();
+				int reserveID = resultSet.getInt(1) + 1;
+				runPrepState("INSERT INTO Reservation(reservation_id, check_in, check_out, hotel_id, room_id, guest_id, rewards_points) "
+						+ "VALUES (" + reserveID + ", " + check_in + ", " + check_out + ", " + hotel_id + ", "
+								+ reserveRoom + ", \"" + guest_id + "\", 100);");
+//				System.out.println("Number of rows affected: " + numRows);
+				return true;
+			}
 			return false;
 		}
 		catch (Exception e) {
@@ -112,21 +123,32 @@ public class DatabaseController {
 			return false;
 		}
 	}
+	private void runPrepState(String query) {
+		try {
+			PreparedStatement statement = this.connection.prepareStatement(query);
+			statement.execute();
+//			return numRows;
+		}
+		catch (Exception e){
+			System.out.println(e);
+//			return -1;
+		}
+	}
 	// TODO Fix mySQL syntax error
-	public int checkAvail(int hotel_id, String room_type, int check_in, int check_out) {
+	private int checkAvail(int hotel_id, String room_type, int check_in, int check_out) {
 		try {
 			ResultSet resultSet = runQuery("select room_id from Room "
 					+ "where hotel_id = " + hotel_id + " "
 					+ "and room_type = \"" + room_type + "\" "
 					+ "and room_id NOT IN "
-						+ "(select room_id from reservation "
+						+ "(select room_id from reservation " // Conflicting scenarios
 						+ "where hotel_id = " + hotel_id + " "
 						+ "and "
-							+ "(check_out > " + check_in + " and check_out < " + check_out + ") "
+							+ "(check_out > " + check_in + " and check_out < " + check_out + ") " // Scenario 3/4
 						+ "or "
-							+ "(check_in > " + check_in + " and check_in < " + check_out + ") "
+							+ "(check_in > " + check_in + " and check_in < " + check_out + ") " // Scenario 5
 						+ "or "
-							+ "(check_in < " + check_in + " and check_out > " + check_out + ") "
+							+ "(check_in <= " + check_in + " and check_out >= " + check_out + ") " // Scenario 2
 						+ ")");
 			if(resultSet.isBeforeFirst()) {
 				resultSet.next();

@@ -27,6 +27,12 @@ public class TestDatabase {
 		myDatabase.getReservations(user);
 		System.out.println("yay");
 
+		int checkIn = 1667808000;
+		int checkOut = 1668067200;
+//		System.out.println(myDatabase.checkAvail(1, "king", checkIn, checkOut));
+		
+//		myDatabase.makeReservation(1, "king", checkIn, checkOut, "myUserName");
+		System.out.println(myDatabase.makeReservation(1, "king", checkIn, checkOut, "myUserName"));
 	}
 	private static void printMap(HashMap<Integer, String> inputMap) {
 		for(Integer key : inputMap.keySet()) {
