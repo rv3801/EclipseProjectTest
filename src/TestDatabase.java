@@ -11,8 +11,8 @@ public class TestDatabase {
 		
 //		myDatabase.getHotels();
 		
-//		HashMap<Integer, String> hotels = myDatabase.getHotels();
-//		printMap(hotels);
+		HashMap<Integer, String> hotels = myDatabase.getHotels();
+		printMap(hotels);
 		
 //		HashMap<Integer, String> rooms = myDatabase.getRooms(1);
 //		printMap(rooms);
@@ -21,18 +21,18 @@ public class TestDatabase {
 //		int checkOut = 1668067200;
 //		System.out.println(myDatabase.checkAvail(1, "king", checkIn, checkOut));
 		
-		String user = "1";
-		
-		//System.out.println(user);
-		myDatabase.getReservations(user);
-		System.out.println("yay");
-
-		int checkIn = 1667808000;
-		int checkOut = 1668067200;
-//		System.out.println(myDatabase.checkAvail(1, "king", checkIn, checkOut));
-		
-//		myDatabase.makeReservation(1, "king", checkIn, checkOut, "myUserName");
-		System.out.println(myDatabase.makeReservation(1, "king", checkIn, checkOut, "myUserName"));
+//		String user = "1";
+//		
+//		//System.out.println(user);
+//		myDatabase.getReservations(user);
+//		System.out.println("yay");
+//
+//		int checkIn = 1667808000;
+//		int checkOut = 1668067200;
+////		System.out.println(myDatabase.checkAvail(1, "king", checkIn, checkOut));
+//		
+////		myDatabase.makeReservation(1, "king", checkIn, checkOut, "myUserName");
+//		System.out.println(myDatabase.makeReservation(1, "king", checkIn, checkOut, "myUserName"));
 	}
 	private static void printMap(HashMap<Integer, String> inputMap) {
 		for(Integer key : inputMap.keySet()) {

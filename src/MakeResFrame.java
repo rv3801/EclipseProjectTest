@@ -28,13 +28,21 @@ public class MakeResFrame {
 	private static JButton returnMenu2;
 	private static JRadioButton king;
 	private static JRadioButton queen;
+	
+	private static String guest_id;
+	
+	private static String userSelectRoomType;
+	private static long checkInTime; // checkInTime variable is unix time stamp
+	private static long checkOutTime;
 
-	MakeResFrame(){
+	MakeResFrame(String guest_id){
+		this.guest_id = guest_id;
 		createFrames();
 		setRoomTypes();
 		activateRoomType();
 		checkInOutLabels();
 		setTextFields();
+		activateDatePicker();
 	}
 	
 	public static void createFrames() {
@@ -124,13 +132,13 @@ public class MakeResFrame {
 		king = new JRadioButton("King");
 		queen = new JRadioButton("Queen");
 		pickRoom = new JLabel("Select Room Type: ");
-		submitRoom = new JButton("Submit");
+//		submitRoom = new JButton("Submit");
 		
 		king.setBounds(350, 100, 250, 30);
 		queen.setBounds(350, 150, 250, 30);
 		pickRoom.setBounds(330, 50, 250, 20);
-		submitRoom.setSize(100, 50);
-		submitRoom.setLocation(350, 300);
+//		submitRoom.setSize(100, 50);
+//		submitRoom.setLocation(350, 300);
 		
 		pickRoom.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		pickRoom.setLayout(null);
@@ -138,7 +146,7 @@ public class MakeResFrame {
 		makeRes.add(king);
 		makeRes.add(queen);
 		makeRes.add(pickRoom);
-		makeRes.add(submitRoom);
+//		makeRes.add(submitRoom);
 
 	
 		king.setVisible(true);
@@ -148,11 +156,28 @@ public class MakeResFrame {
 	}
 	
 	public static void activateRoomType() {
-		submitRoom.addActionListener(new ActionListener() {
+		
+		
+		
+		
+		king.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				userSelectRoomType = "King";
+				//this is where you would show basic room info
+				// move to date picker after this
+				pickRoom.setVisible(true);
+				makeRes.setVisible(false);
+
+			}
+			
+		});
+		queen.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				userSelectRoomType = "Queen";
 				//this is where you would show basic room info
 				// move to date picker after this
 				pickRoom.setVisible(true);
@@ -165,19 +190,19 @@ public class MakeResFrame {
 	
 	public static void activateDatePicker() {
 		//checkInDate.getText();
-		int checkInTime; // checkInTime variable is unix time stamp
-		int checkOutTime;
+//		int checkInTime; // checkInTime variable is unix time stamp
+//		int checkOutTime;
 		
-		try {
-			Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(checkInDate.getText());
-			checkInTime = (int)(date1.getTime()) / 1000;
-			
-			Date date2 = new SimpleDateFormat("dd/MM/yyyy").parse(checkOutDate.getText());
-			checkOutTime = (int)(date2.getTime()) / 1000;
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(checkInDate.getText());
+//			checkInTime = (int)(date1.getTime()) / 1000;
+//			
+//			Date date2 = new SimpleDateFormat("dd/MM/yyyy").parse(checkOutDate.getText());
+//			checkOutTime = (int)(date2.getTime()) / 1000;
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		submitDate.addActionListener(new ActionListener() {
 
@@ -186,6 +211,27 @@ public class MakeResFrame {
 				
 				// enter checkInTime and checkOutTime into database?
 				// exit to menu????
+//				int checkInTime; // checkInTime variable is unix time stamp
+//				int checkOutTime;
+				
+				try {
+					Date date1 = new SimpleDateFormat("MM/dd/yyyy").parse(checkInDate.getText());
+					System.out.println("Date 1: " + date1.toString());
+					checkInTime = date1.getTime() / 1000;
+					
+					Date date2 = new SimpleDateFormat("MM/dd/yyyy").parse(checkOutDate.getText());
+					System.out.println("Date 2: " + date2.toString());
+					checkOutTime = date2.getTime() / 1000;
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				System.out.println("Check in: " + checkInTime);
+				System.out.println("Check out: " + checkOutTime);
+				DatabaseController myDB = new DatabaseController();
+				System.out.println("Res made: " + myDB.makeReservation(2, userSelectRoomType, checkInTime, checkOutTime, guest_id));
+				pickDate.setVisible(false);
+				Frame2 frame2 = new Frame2(guest_id);
+				frame2.setVisible();
 			}
 			
 		});

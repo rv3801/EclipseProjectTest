@@ -13,9 +13,11 @@ public class Frame2 {
 	private static JButton makeRes;
 	private static JButton viewInfo;
 	private static JButton logout;
+	private static String guest_id; 
 			
 			
-	Frame2(){
+	Frame2(String guest_id){
+		this.guest_id = guest_id;
 		createFrames();
 		createButtons();
 		activateButtons();
@@ -78,7 +80,7 @@ public class Frame2 {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				frame2.setVisible(false);
-				MakeResFrame makeResFrame = new MakeResFrame();
+				MakeResFrame makeResFrame = new MakeResFrame(guest_id);
 				makeResFrame.setVisible();
 				
 			}

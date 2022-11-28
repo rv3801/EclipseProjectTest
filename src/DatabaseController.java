@@ -103,7 +103,7 @@ public class DatabaseController {
 			return null;
 		}
 	}
-	public boolean makeReservation(int hotel_id, String room_type, int check_in, int check_out, String guest_id) {
+	public boolean makeReservation(int hotel_id, String room_type, long check_in, long check_out, String guest_id) {
 		try {
 			int reserveRoom = checkAvail(hotel_id, room_type, check_in, check_out);
 			if(reserveRoom != -1) {
@@ -135,7 +135,7 @@ public class DatabaseController {
 		}
 	}
 	// TODO Fix mySQL syntax error
-	private int checkAvail(int hotel_id, String room_type, int check_in, int check_out) {
+	private int checkAvail(int hotel_id, String room_type, long check_in, long check_out) {
 		try {
 			ResultSet resultSet = runQuery("select room_id from Room "
 					+ "where hotel_id = " + hotel_id + " "

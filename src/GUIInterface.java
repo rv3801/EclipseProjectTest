@@ -64,27 +64,37 @@ public class GUIInterface{
 				// TODO Auto-generated method stub
 				
 //				boolean login_success = false;
-//				String guest_username = userNameT.getText();
-//				String guest_password = passwordT.getText();
-//
-//				
+				
+				String guest_username = userNameT.getText();
+				String guest_password = passwordT.getText();
+				DatabaseController myDatabase = new DatabaseController();
+
+				if(myDatabase.userLogin(guest_username, guest_password)) {
+					frame1.setVisible(false);
+					frame2 = new Frame2(guest_username);
+					frame2.setVisible();
+				}
+				else {
+					loginInvalidLabel.setVisible(true);
+				}
+				
 //				if (guest_username == "" || guest_password == "") {
 //					loginInvalidLabel.setVisible(true);
 //					return;
 //					
 //				}
-//
-//				//login_success = myDatabase.checkLogin(guest_username, guest_password);
-//				
+
+				//login_success = myDatabase.checkLogin(guest_username, guest_password);
+				
 //				if (!(login_success)) {
 //					loginMismatchLabel.setVisible(true);
 //					return;
 //				}
 				
-				//userName = guest_username; 
-				frame1.setVisible(false);
-				frame2 = new Frame2();
-				frame2.setVisible();
+//				userName = guest_username; 
+//				frame1.setVisible(false);
+//				frame2 = new Frame2(guest_username);
+//				frame2.setVisible();
 			}
 			
 		});
@@ -131,8 +141,8 @@ public class GUIInterface{
 		
 		userLabel.setVisible(true);
 		passwordLabel.setVisible(true);
-		loginInvalidLabel.setVisible(true);
-		loginMismatchLabel.setVisible(true);
+		loginInvalidLabel.setVisible(false);
+		loginMismatchLabel.setVisible(false);
 		
 		frame1.add(userLabel);
 		frame1.add(passwordLabel);
