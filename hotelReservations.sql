@@ -42,6 +42,7 @@ INSERT INTO Hotel(hotel_id, hotel_name, hotel_location) VALUES (1, "The Hilton",
 INSERT INTO Hotel(hotel_id, hotel_name, hotel_location) VALUES (2, "The Hilton", "San Francisco, CA");
 INSERT INTO Hotel(hotel_id, hotel_name, hotel_location) VALUES (3, "The Wynn", "Las Vegas, NV");
 INSERT INTO Hotel(hotel_id, hotel_name, hotel_location) VALUES (4, "The Venetian", "Las Vegas, NV");
+INSERT INTO Hotel(hotel_id, hotel_name, hotel_location) VALUES (1010, "Double Tree", "Las Vegas, NV");
 
 INSERT INTO Room(room_id, room_type, hotel_id) VALUES (1, "King", 1);
 INSERT INTO Room(room_id, room_type, hotel_id) VALUES (2, "Queen", 1);
@@ -54,6 +55,7 @@ INSERT INTO Room(room_id, room_type, hotel_id) VALUES (2, "King", 2);
 INSERT INTO Guest(guest_id, guest_fname, guest_lname, guest_password, guest_email) VALUES ("1", "Sally", "Doe", "password", "email");
 INSERT INTO Guest(guest_id, guest_fname, guest_lname, guest_password, guest_email) VALUES ("2", "Joe", "Doe", "password", "email");
 INSERT INTO Guest(guest_id, guest_fname, guest_lname, guest_password, guest_email) VALUES ("3", "Hannah", "Doe", "password", "email");
+INSERT INTO Guest(guest_id, guest_fname, guest_lname, guest_password, guest_email) VALUES ("myUserName", "Fname", "Lname", "password", "email");
 
 # sally staying in Hotel 1, Room 1 (King)
 # joe staying in Hotel 1, Room 1 (King)
@@ -104,6 +106,7 @@ select room_id from room
 				)
 			)
 ;
+
 
 # Requested check in: 1667808000 (11.7.22)
 # Requested check out: 1668067200 (11.10.22)
