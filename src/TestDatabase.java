@@ -17,9 +17,16 @@ public class TestDatabase {
 //		HashMap<Integer, String> rooms = myDatabase.getRooms(1);
 //		printMap(rooms);
 		
-		int checkIn = 1667808000;
-		int checkOut = 1668067200;
-		System.out.println(myDatabase.checkAvail(1, "king", checkIn, checkOut));
+//		int checkIn = 1667808000;
+//		int checkOut = 1668067200;
+//		System.out.println(myDatabase.checkAvail(1, "king", checkIn, checkOut));
+		
+		String user = "1";
+		
+		//System.out.println(user);
+		myDatabase.getReservations(user);
+		System.out.println("yay");
+
 	}
 	private static void printMap(HashMap<Integer, String> inputMap) {
 		for(Integer key : inputMap.keySet()) {

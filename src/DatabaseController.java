@@ -2,6 +2,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DatabaseController {
@@ -144,7 +145,52 @@ public class DatabaseController {
 			return -1;
 		}
 	}
-	public void getReservations() {
+	public void getReservations(String user) {
+		
+		String resultString = "";
+		String[] reservations;
+		String finalString = "<html>";
+		
+		try {
+			ResultSet resultSet = runQuery("select reservation.check_in, reservation.check_out, hotel.hotel_name, reservation.room_id, reservation.rewards_points from reservation, hotel "
+					+ "where reservation.hotel_id = hotel.hotel_id "
+					+ " and reservation.guest_id = " + user + ";");
+			
+			if (resultSet.next() == false) {
+				System.out.println("You have no upcoming reservations.");
+			}
+			else {
+				do {
+//					resultString += resultSet.getInt(1) + " ";
+					
+					finalString += "(" + resultSet.getInt(1) + " - " + resultSet.getInt(2) + ")"
+							+ " " + resultSet.getString(3) + " - " + resultSet.getInt(4)
+							+ "<br/>" + "(" + resultSet.getInt(5) + ")" + "<br/>";
+
+			        } while (resultSet.next());
+				
+			}
+					
+			
+//			reservations = resultString.split(" ");
+//			
+//			for (int i = 0; i < reservations.length; i++) {
+//				
+//				finalString += getReservationInfo(reservations[i]);
+//			}
+//			
+//			
+			System.out.println(finalString);
+		}
+		catch (Exception e) {
+			System.out.println(e);
+			return;
+		}
+		
+		
+		// reservation id, check-in, check-out, hotel id, room id, rewards points
+		
 		// TODO
 	}
+	
 }
