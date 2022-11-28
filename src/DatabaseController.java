@@ -139,4 +139,7 @@ public class DatabaseController {
 			return -1;
 		}
 	}
+	public void getReservations() {
+		// TODO
+	}
 }
